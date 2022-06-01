@@ -12,6 +12,13 @@
 
         <a class="nav-link" href="{{url('/brands/create')}}">AddBrand <span class="sr-only">(current)</span></a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/cars')}}">CarList<span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item active">
+
+        <a class="nav-link" href="{{url('/cars/create')}}">AddCar <span class="sr-only">(current)</span></a>
+    </li>
     {{-- <li class="nav-item">
         <a class="nav-link" href="{{url('/owns')}}">Owner</a>
     </li>

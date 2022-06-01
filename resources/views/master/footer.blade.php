@@ -1,1 +1,1 @@
-<h5 class="text-center">Brands Copyright</h5>
+<h5 class="text-center">Cars Copyright</h5>

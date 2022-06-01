@@ -19,7 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Default User 
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Default 
 
 Route::get('/brands/create', 'BrandController@create');
 Route::post('/brands', 'BrandController@store');
@@ -29,3 +33,13 @@ Route::get('/brands/{brand}/edit', 'BrandController@edit');
 Route::put('/brands/{brand}', 'BrandController@update');
 Route::delete('/brands/{brand}', 'BrandController@destroy');
 Route::get('/brandsDelete', 'BrandController@destroyAll');
+
+
+Route::get('/cars/create', 'CarController@create');
+Route::post('/cars', 'CarController@store');
+Route::get('/cars', 'CarController@index');
+Route::get('/cars/{car}', 'CarController@show');
+Route::get('/cars/{car}/edit', 'CarController@edit');
+Route::put('/cars/{car}', 'CarController@update');
+Route::delete('/cars/{car}', 'CarController@destroy');
+Route::get('/carsDelete', 'CarController@destroyAll');
