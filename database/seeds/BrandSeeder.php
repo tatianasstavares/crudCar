@@ -15,11 +15,13 @@ class BrandSeeder extends Seeder
 
         foreach ($brands as $brand) {
             \DB::table('brands')->insert(
-                ['name'     => $brand,
-                    'created_at' =>now(),
-                    'updated_at' =>now(),
-                    'deleted_at' =>now()
-                ]);
+                [
+                    'name'     => $brand,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                    // 'deleted_at' =>now()
+                ]
+            );
         }
     }
 }

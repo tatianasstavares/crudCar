@@ -7,11 +7,11 @@ use Faker\Generator as Faker;
 
 $factory->define(Car::class, function (Faker $faker) {
     return [
-        'brand_id' => rand(1,6),
-        'registration'=> $faker->firstName(),
+        'brand_id' => rand(1, 6),
+        'registration' => $faker->firstName(),
         'year_of_manufacture' => $faker->year(),
-        'color'=>$faker->colorName,
-        'deleted_at'=> new DateTime()
+        'color' => $faker->colorName,
+        // 'deleted_at'=> new DateTime()
     ];
 });
 

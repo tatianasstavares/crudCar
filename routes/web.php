@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/brands/create', 'BrandController@create');
+Route::post('/brands', 'BrandController@store');
+Route::get('/brands', 'BrandController@index');
+Route::get('/brands/{brand}', 'BrandController@show');
+Route::get('/brands/{brand}/edit', 'BrandController@edit');
+Route::put('/brands/{brand}', 'BrandController@update');
+Route::delete('/brands/{brand}', 'BrandController@destroy');
+Route::get('/brandsDelete', 'BrandController@destroyAll');
