@@ -24,22 +24,27 @@
                     @else
                         <i class="bi bi-emoji-smile-upside-down-fill"></i>
                     @endif
-                </td> --}} 
+                </td> --}}
 
            <td> <a class="btn btn-success" href="{{ url('brands/' . $brand->id) }}" role="button">Show</a> </td>
                 <td>
-                    <a type="button" href="{{ url('brands/' . $brand->id . '/edit') }}" class="btn btn-primary">Edit</a>
+                    @auth
+                     <a type="button" href="{{ url('brands/' . $brand->id . '/edit') }}" class="btn btn-primary">Edit</a>
+                    @endauth
                 </td>
                 <td>
                     <form action="{{url('brands/' . $brand->id)}}" method="POST">
                         @csrf    @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        @auth
+                         <button type="submit" class="btn btn-danger">Delete</button>
+                        @endauth
                     </form>
                 </td>
             </tr>
-        @endforeach  
-
-        <a type="button" href="{{ url('brandsDelete') }}" class="btn btn-danger">Delete All</a>
+        @endforeach
+            @auth
+                <a type="button" href="{{ url('brandsDelete') }}" class="btn btn-danger">Delete All</a>
+            @endauth
 
     </tbody>
 </table>
