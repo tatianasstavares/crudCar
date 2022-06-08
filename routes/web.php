@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,13 +32,17 @@ Route::get('/brands', 'BrandController@index');
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/brands/create', 'BrandController@create');
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/brands/create', 'BrandController@create');
+    });
     Route::post('/brands', 'BrandController@store');
     Route::get('/brands/{brand}/edit', 'BrandController@edit');
     Route::put('/brands/{brand}', 'BrandController@update');
     Route::delete('/brands/{brand}', 'BrandController@destroy');
     Route::get('/brandsDelete', 'BrandController@destroyAll');
    });
+
+   Route::get('brands/export/', [BrandController::class, 'export']);
 
    Route::get('/brands/{brand}', 'BrandController@show');
 
