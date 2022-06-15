@@ -1,4 +1,12 @@
-<h1>Brands List</h1>   <a class="btn btn-primary" href="/brands/export" role="button">Export</a>
+<h1>Brands List</h1>
+<a class="btn btn-primary" href="/brands/export" role="button">Export</a>
+<form action="{{ url('brands/import/') }}" method="POST" enctype="multipart/form-data">
+     @csrf
+        <div>
+            <button class="btn btn-success" type="submit">Import User Data</button><br>
+        <input type="file" name="file" class="form-control">
+        </div>
+</form>
 @if (session('status'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('status') }}<button
             type="button" class="close" data-dismiss="alert" aria-label="Close"> <span

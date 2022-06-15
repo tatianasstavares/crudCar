@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
    });
 
    Route::get('brands/export/', [BrandController::class, 'export']);
+   Route::post('brands/import/', 'BrandController@import');
 
    Route::get('/brands/{brand}', 'BrandController@show');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Brand;
 use Illuminate\Http\Request;
 use App\Exports\BrandsExport;
+use App\Imports\BrandsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -118,6 +119,13 @@ class BrandController extends Controller
     public function export()
     {
         return Excel::download(new BrandsExport, 'brands.xlsx');
+    }
+
+    public function import()
+    {
+        Excel::import(new BrandsImport, request()->file('file'));
+
+        return redirect('/')->with('success', 'All good!');
     }
 }
 
