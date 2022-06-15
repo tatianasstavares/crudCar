@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Exports\BrandsExport;
 use App\Imports\BrandsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -46,9 +47,25 @@ class BrandController extends Controller
     {
         $this->validate($request, [
             'name' =>   'required',
+            'image'       => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        brand::create($request->all());
+        $brand = new Brand();
+        $brand->name=$request->name;
+        $brand->save();
+        if ($request->file('image')) {
+            // Get Image File
+            $imagePath = $request->file('image');
+            // Define Image Name
+            $imageName =  $brand->id . '_' .  time() . '_' .  $imagePath->getClientOriginalName();
+            // Save Image on Storage$
+            $path = $request->file('image')->storeAs('images/brands/' . $brand->id, $imageName, 'public');
+
+            //Save Image Path
+            $brand->image = $path;
+        }
+
+        $brand->save();
 
         return redirect('brands')->with('status', 'Item created successfully!');
     }
@@ -90,6 +107,7 @@ class BrandController extends Controller
     {
         $this->validate($request, [
             'name' =>   'required',
+            'image'
         ]);
 
         $brand->update($request->all());
@@ -104,6 +122,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
+        Storage::deleteDirectory('public/images/brands/' . $brand->id);
+
         $brand->delete();
 
         return redirect('brands')->with('status', 'Item deleted successfully!');;

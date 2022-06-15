@@ -1,12 +1,13 @@
 <h1>Brands List</h1>
-<a class="btn btn-primary" href="/brands/export" role="button">Export</a>
+<div class="d-flex p-2" >
+    <a class="btn btn-primary ml-mb-3" href="/brands/export" role="button" >Export</a>
 <form action="{{ url('brands/import/') }}" method="POST" enctype="multipart/form-data">
      @csrf
-        <div>
-            <button class="btn btn-success" type="submit">Import User Data</button><br>
+        <button class="btn btn-success" type="submit">Import User Data</button>
+        <br>
         <input type="file" name="file" class="form-control">
-        </div>
 </form>
+</div>
 @if (session('status'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('status') }}<button
             type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
@@ -26,7 +27,17 @@
                 <td> {{ $brand->name }}</td>
                 <td>{{ $brand->created_at }}</td>
                 <td>{{ $brand->updated_at }}</td>
-                {{-- <td>
+                <td>
+                    @if ($brand->image)
+                    <img class="w-100 img-responsive" src="{{asset('storage/'.$brand->image) }}" alt="" title=""></a>
+                    @else
+                        <p>
+                            No Image
+                        </p>
+                    @endif
+
+                </td>
+                    {{-- <td>
                     @if ($player->retired)
                         <i class="bi bi-emoji-smile"></i>
                     @else
